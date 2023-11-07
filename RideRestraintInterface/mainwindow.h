@@ -15,7 +15,18 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_clicked();
+    void updateSeconds();
+    void resetTimer();
+    void incrementTrain();
+
 private:
     Ui::MainWindow *ui;
+    bool ready = false;
+    QTimer *timer;
+    int elapsedSeconds = 0;
+    int train = 1;
+
 };
 #endif // MAINWINDOW_H

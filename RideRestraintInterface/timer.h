@@ -1,11 +1,15 @@
-#ifndef TIMER_H
-#define TIMER_H
+#include <QObject>
+#include <QTimer>
 
-
-class Timer
+class Timer : public QObject
 {
+    Q_OBJECT
 public:
     Timer();
-};
 
-#endif // TIMER_H
+private slots:
+    void handleTimeout();
+
+private:
+    QTimer *timer;
+};

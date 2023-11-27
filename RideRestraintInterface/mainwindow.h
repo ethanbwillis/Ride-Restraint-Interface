@@ -24,10 +24,12 @@ private slots:
 private:
     Ui::MainWindow *ui;
     bool ready = false;
+    //member variables to keep track of timer and seconds. elapsedSeconds and train subject to change when backend added
     QTimer *timer;
     int elapsedSeconds = 0;
     int train = 1;
 public:
+    //pixmap/image objects to be updated on init
     QPixmap unReadySeat;
     QPixmap red;
     QPixmap logo;

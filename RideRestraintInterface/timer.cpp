@@ -9,5 +9,5 @@ Timer::Timer() {
 
 void Timer::handleTimeout()
 {
-    // Do something when the timer times out
+    //unused, for when timer runs out, maybe update later
 }

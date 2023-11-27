@@ -27,6 +27,13 @@ private:
     QTimer *timer;
     int elapsedSeconds = 0;
     int train = 1;
-
+public:
+    QPixmap unReadySeat;
+    QPixmap red;
+    QPixmap logo;
+    QPixmap green;
+    QPixmap readySeat;
+    QPixmap ipSeat;
+    QPixmap rideRestraintLogo;
 };
 #endif // MAINWINDOW_H

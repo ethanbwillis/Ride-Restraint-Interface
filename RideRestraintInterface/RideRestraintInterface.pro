@@ -9,11 +9,15 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    RideSeat.cpp \
+    Station.cpp \
     main.cpp \
     mainwindow.cpp \
     timer.cpp
 
 HEADERS += \
+    RideSeat.h \
+    Station.h \
     mainwindow.h \
     timer.h
 

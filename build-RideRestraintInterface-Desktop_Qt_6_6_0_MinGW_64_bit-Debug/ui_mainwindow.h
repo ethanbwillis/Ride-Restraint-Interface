@@ -14,9 +14,9 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,18 +25,24 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QLabel *label;
+    QLabel *seatImage;
     QPushButton *pushButton;
-    QTextBrowser *textBrowser;
-    QTextBrowser *textBrowser_2;
-    QTextBrowser *textBrowser_3;
-    QTextBrowser *textBrowser_4;
-    QLabel *backLabel;
-    QLabel *midLabel;
-    QLabel *frontLabel;
-    QLabel *timerLbl;
-    QLabel *trainLabel;
-    QLabel *overTimeLabel;
+    QLabel *info;
+    QPlainTextEdit *timeMarker;
+    QPlainTextEdit *elapsedTime;
+    QPlainTextEdit *trainMarker;
+    QPlainTextEdit *trainNumber;
+    QLabel *backInfo;
+    QLabel *middleInfo;
+    QLabel *frontInfo;
+    QPlainTextEdit *backMarker;
+    QPlainTextEdit *midMarker;
+    QPlainTextEdit *frontMarker;
+    QLabel *backStatus;
+    QLabel *midStatus;
+    QLabel *frontStatus;
+    QPlainTextEdit *overTimeLabel;
+    QLabel *logo;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -47,42 +53,109 @@ public:
         MainWindow->resize(800, 600);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setGeometry(QRect(180, 130, 361, 231));
+        seatImage = new QLabel(centralwidget);
+        seatImage->setObjectName("seatImage");
+        seatImage->setGeometry(QRect(270, 160, 271, 221));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(560, 240, 80, 24));
-        textBrowser = new QTextBrowser(centralwidget);
-        textBrowser->setObjectName("textBrowser");
-        textBrowser->setGeometry(QRect(0, 0, 181, 131));
-        textBrowser_2 = new QTextBrowser(centralwidget);
-        textBrowser_2->setObjectName("textBrowser_2");
-        textBrowser_2->setGeometry(QRect(0, 430, 181, 131));
-        textBrowser_3 = new QTextBrowser(centralwidget);
-        textBrowser_3->setObjectName("textBrowser_3");
-        textBrowser_3->setGeometry(QRect(330, 430, 181, 131));
-        textBrowser_4 = new QTextBrowser(centralwidget);
-        textBrowser_4->setObjectName("textBrowser_4");
-        textBrowser_4->setGeometry(QRect(610, 430, 181, 131));
-        backLabel = new QLabel(centralwidget);
-        backLabel->setObjectName("backLabel");
-        backLabel->setGeometry(QRect(20, 470, 121, 71));
-        midLabel = new QLabel(centralwidget);
-        midLabel->setObjectName("midLabel");
-        midLabel->setGeometry(QRect(360, 470, 121, 71));
-        frontLabel = new QLabel(centralwidget);
-        frontLabel->setObjectName("frontLabel");
-        frontLabel->setGeometry(QRect(640, 470, 121, 71));
-        timerLbl = new QLabel(centralwidget);
-        timerLbl->setObjectName("timerLbl");
-        timerLbl->setGeometry(QRect(80, 30, 61, 20));
-        trainLabel = new QLabel(centralwidget);
-        trainLabel->setObjectName("trainLabel");
-        trainLabel->setGeometry(QRect(80, 100, 49, 16));
-        overTimeLabel = new QLabel(centralwidget);
+        pushButton->setGeometry(QRect(590, 240, 111, 41));
+        QFont font;
+        font.setFamilies({QString::fromUtf8("OCR A Extended")});
+        font.setPointSize(15);
+        font.setBold(true);
+        pushButton->setFont(font);
+        info = new QLabel(centralwidget);
+        info->setObjectName("info");
+        info->setGeometry(QRect(0, 0, 231, 201));
+        timeMarker = new QPlainTextEdit(centralwidget);
+        timeMarker->setObjectName("timeMarker");
+        timeMarker->setGeometry(QRect(60, 30, 141, 31));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("OCR A Extended")});
+        font1.setBold(true);
+        timeMarker->setFont(font1);
+        timeMarker->setFrameShape(QFrame::NoFrame);
+        timeMarker->setFrameShadow(QFrame::Plain);
+        timeMarker->setLineWidth(0);
+        timeMarker->setReadOnly(true);
+        elapsedTime = new QPlainTextEdit(centralwidget);
+        elapsedTime->setObjectName("elapsedTime");
+        elapsedTime->setGeometry(QRect(60, 60, 111, 31));
+        elapsedTime->setFont(font1);
+        elapsedTime->setFrameShape(QFrame::NoFrame);
+        elapsedTime->setFrameShadow(QFrame::Plain);
+        elapsedTime->setLineWidth(0);
+        elapsedTime->setReadOnly(true);
+        elapsedTime->setCenterOnScroll(true);
+        trainMarker = new QPlainTextEdit(centralwidget);
+        trainMarker->setObjectName("trainMarker");
+        trainMarker->setGeometry(QRect(60, 110, 131, 31));
+        trainMarker->setFont(font1);
+        trainMarker->setFrameShape(QFrame::NoFrame);
+        trainMarker->setFrameShadow(QFrame::Plain);
+        trainMarker->setLineWidth(0);
+        trainMarker->setReadOnly(true);
+        trainNumber = new QPlainTextEdit(centralwidget);
+        trainNumber->setObjectName("trainNumber");
+        trainNumber->setGeometry(QRect(60, 140, 141, 31));
+        trainNumber->setFont(font1);
+        trainNumber->setFrameShape(QFrame::NoFrame);
+        trainNumber->setFrameShadow(QFrame::Plain);
+        trainNumber->setLineWidth(0);
+        trainNumber->setReadOnly(true);
+        backInfo = new QLabel(centralwidget);
+        backInfo->setObjectName("backInfo");
+        backInfo->setGeometry(QRect(0, 420, 191, 161));
+        middleInfo = new QLabel(centralwidget);
+        middleInfo->setObjectName("middleInfo");
+        middleInfo->setGeometry(QRect(300, 420, 201, 161));
+        frontInfo = new QLabel(centralwidget);
+        frontInfo->setObjectName("frontInfo");
+        frontInfo->setGeometry(QRect(600, 420, 201, 161));
+        backMarker = new QPlainTextEdit(centralwidget);
+        backMarker->setObjectName("backMarker");
+        backMarker->setGeometry(QRect(40, 390, 131, 31));
+        backMarker->setFont(font1);
+        backMarker->setFrameShape(QFrame::NoFrame);
+        backMarker->setFrameShadow(QFrame::Plain);
+        backMarker->setLineWidth(0);
+        backMarker->setReadOnly(true);
+        midMarker = new QPlainTextEdit(centralwidget);
+        midMarker->setObjectName("midMarker");
+        midMarker->setGeometry(QRect(340, 390, 151, 31));
+        midMarker->setFont(font1);
+        midMarker->setFrameShape(QFrame::NoFrame);
+        midMarker->setFrameShadow(QFrame::Plain);
+        midMarker->setLineWidth(0);
+        midMarker->setReadOnly(true);
+        frontMarker = new QPlainTextEdit(centralwidget);
+        frontMarker->setObjectName("frontMarker");
+        frontMarker->setGeometry(QRect(640, 390, 151, 31));
+        frontMarker->setFont(font1);
+        frontMarker->setFrameShape(QFrame::NoFrame);
+        frontMarker->setFrameShadow(QFrame::Plain);
+        frontMarker->setLineWidth(0);
+        frontMarker->setReadOnly(true);
+        backStatus = new QLabel(centralwidget);
+        backStatus->setObjectName("backStatus");
+        backStatus->setGeometry(QRect(-10, 440, 211, 121));
+        midStatus = new QLabel(centralwidget);
+        midStatus->setObjectName("midStatus");
+        midStatus->setGeometry(QRect(290, 440, 211, 121));
+        frontStatus = new QLabel(centralwidget);
+        frontStatus->setObjectName("frontStatus");
+        frontStatus->setGeometry(QRect(590, 440, 211, 121));
+        overTimeLabel = new QPlainTextEdit(centralwidget);
         overTimeLabel->setObjectName("overTimeLabel");
-        overTimeLabel->setGeometry(QRect(110, 30, 49, 16));
+        overTimeLabel->setGeometry(QRect(80, 90, 61, 31));
+        overTimeLabel->setFont(font1);
+        overTimeLabel->setFrameShape(QFrame::NoFrame);
+        overTimeLabel->setFrameShadow(QFrame::Plain);
+        overTimeLabel->setLineWidth(0);
+        overTimeLabel->setReadOnly(true);
+        logo = new QLabel(centralwidget);
+        logo->setObjectName("logo");
+        logo->setGeometry(QRect(570, 0, 231, 201));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -100,51 +173,24 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Ready?", nullptr));
-        textBrowser->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Elapsed Time:</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin"
-                        "-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Train Number:</p></body></html>", nullptr));
-        textBrowser_2->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Back:</p></body></html>", nullptr));
-        textBrowser_3->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Middle:</p></body></html>", nullptr));
-        textBrowser_4->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Front:</p></body></html>", nullptr));
-        backLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        midLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        frontLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        timerLbl->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        trainLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        overTimeLabel->setText(QString());
+        seatImage->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "DISPATCH", nullptr));
+        info->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        timeMarker->setPlainText(QCoreApplication::translate("MainWindow", "Elapsed Time:", nullptr));
+        elapsedTime->setPlainText(QString());
+        trainMarker->setPlainText(QCoreApplication::translate("MainWindow", "Train Number:", nullptr));
+        trainNumber->setPlainText(QString());
+        backInfo->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        middleInfo->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        frontInfo->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        backMarker->setPlainText(QCoreApplication::translate("MainWindow", "Back of Train:", nullptr));
+        midMarker->setPlainText(QCoreApplication::translate("MainWindow", "Middle of Train:", nullptr));
+        frontMarker->setPlainText(QCoreApplication::translate("MainWindow", "Front of Train:", nullptr));
+        backStatus->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        midStatus->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        frontStatus->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        overTimeLabel->setPlainText(QString());
+        logo->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPlainTextEdit>
@@ -43,6 +44,10 @@ public:
     QLabel *frontStatus;
     QPlainTextEdit *overTimeLabel;
     QLabel *logo;
+    QLineEdit *lineEdit;
+    QPushButton *pushButton_2;
+    QPlainTextEdit *timeMarker_2;
+    QPlainTextEdit *averageTime;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -147,7 +152,7 @@ public:
         frontStatus->setGeometry(QRect(590, 440, 211, 121));
         overTimeLabel = new QPlainTextEdit(centralwidget);
         overTimeLabel->setObjectName("overTimeLabel");
-        overTimeLabel->setGeometry(QRect(80, 90, 61, 31));
+        overTimeLabel->setGeometry(QRect(310, 70, 61, 31));
         overTimeLabel->setFont(font1);
         overTimeLabel->setFrameShape(QFrame::NoFrame);
         overTimeLabel->setFrameShadow(QFrame::Plain);
@@ -156,6 +161,32 @@ public:
         logo = new QLabel(centralwidget);
         logo->setObjectName("logo");
         logo->setGeometry(QRect(570, 0, 231, 201));
+        lineEdit = new QLineEdit(centralwidget);
+        lineEdit->setObjectName("lineEdit");
+        lineEdit->setGeometry(QRect(590, 290, 113, 24));
+        pushButton_2 = new QPushButton(centralwidget);
+        pushButton_2->setObjectName("pushButton_2");
+        pushButton_2->setGeometry(QRect(710, 290, 80, 24));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("OCR A Extended")});
+        font2.setPointSize(6);
+        pushButton_2->setFont(font2);
+        timeMarker_2 = new QPlainTextEdit(centralwidget);
+        timeMarker_2->setObjectName("timeMarker_2");
+        timeMarker_2->setGeometry(QRect(60, 80, 141, 31));
+        timeMarker_2->setFont(font1);
+        timeMarker_2->setFrameShape(QFrame::NoFrame);
+        timeMarker_2->setFrameShadow(QFrame::Plain);
+        timeMarker_2->setLineWidth(0);
+        timeMarker_2->setReadOnly(true);
+        averageTime = new QPlainTextEdit(centralwidget);
+        averageTime->setObjectName("averageTime");
+        averageTime->setGeometry(QRect(150, 80, 141, 31));
+        averageTime->setFont(font1);
+        averageTime->setFrameShape(QFrame::NoFrame);
+        averageTime->setFrameShadow(QFrame::Plain);
+        averageTime->setLineWidth(0);
+        averageTime->setReadOnly(true);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -191,6 +222,9 @@ public:
         frontStatus->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         overTimeLabel->setPlainText(QString());
         logo->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Change Train No.", nullptr));
+        timeMarker_2->setPlainText(QCoreApplication::translate("MainWindow", "Avg Time:", nullptr));
+        averageTime->setPlainText(QString());
     } // retranslateUi
 
 };

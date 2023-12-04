@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "RideSeat.h"
 
 #include <QMainWindow>
 
@@ -21,6 +22,8 @@ private slots:
     void resetTimer();
     void incrementTrain();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     bool ready = false;
@@ -28,6 +31,10 @@ private:
     QTimer *timer;
     int elapsedSeconds = 0;
     int train = 1;
+    int dispatches = 0;
+    std::vector<RideSeat> seats;
+    int averageTime;
+    std::vector<int> times;
 public:
     //pixmap/image objects to be updated on init
     QPixmap unReadySeat;

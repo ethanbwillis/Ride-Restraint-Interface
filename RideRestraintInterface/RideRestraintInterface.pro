@@ -12,14 +12,12 @@ SOURCES += \
     RideSeat.cpp \
     Station.cpp \
     main.cpp \
-    mainwindow.cpp \
-    timer.cpp
+    mainwindow.cpp
 
 HEADERS += \
     RideSeat.h \
     Station.h \
-    mainwindow.h \
-    timer.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui

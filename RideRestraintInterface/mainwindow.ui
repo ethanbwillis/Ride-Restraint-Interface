@@ -402,20 +402,10 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QPushButton" name="rmvTrainButton">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>290</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
+      <x>610</x>
       <y>290</y>
       <width>80</width>
       <height>24</height>
@@ -428,7 +418,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Change Train No.</string>
+     <string>Remove Train</string>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="timeMarker_2">

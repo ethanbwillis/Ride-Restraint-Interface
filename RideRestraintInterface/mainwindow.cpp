@@ -79,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->timeMarker_2->setStyleSheet("color: white; background-color: transparent");
 
-    ui->pushButton_2->setStyleSheet("color: white");
+    ui->rmvTrainButton->setStyleSheet("color: white");
 }
 
 MainWindow::~MainWindow()
@@ -146,65 +146,62 @@ void MainWindow::resetTimer() {
 }
 
 void MainWindow::incrementTrain() {
-    //increments/updates current train. 4 for now. called when dispatch is clicked/
-    if (this->train >= 4) {
-        this->train = 1;
-        this->seats[3].setReadyStatus(false, 1);
-        this->seats[3].setReadyStatus(false, 1);
-        this->seats[3].setReadyStatus(false, 1);
-        ui->trainNumber->setPlainText(QString::number(this->train));
-    } else {
-        this->train++;
-        this->seats[this->train - 2].setReadyStatus(false, 1);
-        this->seats[this->train - 2].setReadyStatus(false, 1);
-        this->seats[this->train - 2].setReadyStatus(false, 1);
-        ui->trainNumber->setPlainText(QString::number(this->train));
+    std::vector<int> trainNumbers;
+    for (size_t i = 0; i < seats.size(); i++) {
+        trainNumbers.push_back(seats[i].getTrainNumber());
     }
+    auto it = std::find(trainNumbers.begin(), trainNumbers.end(), this->train);
+    if (it == trainNumbers.end() || std::next(it) == trainNumbers.end()){
+        this->train = trainNumbers.front();
+        this->seats[findIndex(this->train)].setReadyStatus(false, 1);
+        this->seats[findIndex(this->train)].setReadyStatus(false, 2);
+        this->seats[findIndex(this->train)].setReadyStatus(false, 3);
+        ui->trainNumber->setPlainText(QString::number(this->train));
+        return;
+    }
+
+    for (int num : trainNumbers) {
+        if (num > this->train) {
+            // Found the next available number
+            this->train = num;
+            this->seats[findIndex(this->train)].setReadyStatus(false, 1);
+            this->seats[findIndex(this->train)].setReadyStatus(false, 2);
+            this->seats[findIndex(this->train)].setReadyStatus(false, 3);
+            ui->trainNumber->setPlainText(QString::number(this->train));
+            return;
+        }
+    }
+
+    // If no next available number is found, return the first element
+    this->train = trainNumbers.front();
+    this->seats[findIndex(this->train)].setReadyStatus(false, 1);
+    this->seats[findIndex(this->train)].setReadyStatus(false, 2);
+    this->seats[findIndex(this->train)].setReadyStatus(false, 3);
+    ui->trainNumber->setPlainText(QString::number(this->train));
+    return;
 }
 
+int MainWindow::findIndex(int x) {
+    for (size_t i = 0; i < this->seats.size(); i++) {
+        if (this->seats[i].getTrainNumber() == x) {
+            return i;
+        }
+    }
+    return -1;
+}
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    auto text = ui->lineEdit->text();
-    int num = 0;
+void MainWindow::on_rmvTrainButton_clicked() {
+    if (this->seats.size() == 1) {
+        return;
+    }
     int previousSeat = this->train;
-
-    if(text == "1") {
-        this->train = 1;
-        num = 1;
-    }
-    else if(text == "2") {
-        this->train = 2;
-        num = 2;
-    }
-    else if(text == "3") {
-        this->train = 3;
-        num = 3;
-    }
-    else if(text == "4") {
-        this->train = 4;
-        num = 4;
-    }
-    if (num == 0) {
-        return;
-    }
-    if (this->seats[previousSeat - 1].getReadyStatus() != 3) {
-        this->resetTimer();
-        ui->trainNumber->setPlainText(QString::number(num));
-        return;
-    }
-    this->seats[previousSeat - 1].setTime(elapsedSeconds);
-    ui->trainNumber->setPlainText(QString::number(num));
-    this->times.push_back(this->elapsedSeconds);
+    this->incrementTrain();
+    this->seats.erase(this->seats.begin() + findIndex(previousSeat));
     this->resetTimer();
-    int sum = 0;
-    for (std::size_t i = 0; i < this->times.size(); i++) {
-        sum += this->times[i];
-    }
-    this->dispatches++;
-    this->averageTime = sum / dispatches;
-    //display it
-    ui->averageTime->setPlainText(QString::number(averageTime));
-    this->resetTimer();
+    ui->seatImage->setPixmap(unReadySeat);
+    ui->backStatus->setPixmap(red);
+    ui->midStatus->setPixmap(red);
+    ui->frontStatus->setPixmap(red);
+    ui->trainNumber->setPlainText(QString::number(this->train));
 }
 

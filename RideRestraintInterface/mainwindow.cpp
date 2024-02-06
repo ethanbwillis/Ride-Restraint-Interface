@@ -3,6 +3,7 @@
 #include <QPixmap>
 #include <QTimer>
 #include <QDateTime>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -117,20 +118,20 @@ void MainWindow::updateSeconds() {
     //continuously update seconds. kept track of using member variable elapsedSeconds
     this->elapsedSeconds++;
     ui->elapsedTime->setPlainText(QString::number(this->elapsedSeconds));
-    if (this->elapsedSeconds > 10) {
+    if (this->elapsedSeconds > 1) {
         this->seats[this->train - 1].setReadyStatus(true, 1);
         ui->backStatus->setPixmap(green);
         ui->seatImage->setPixmap(ipSeat);
     }
-    if (this->elapsedSeconds > 15) {
+    if (this->elapsedSeconds > 2) {
         this->seats[this->train - 1].setReadyStatus(true, 2);
         ui->midStatus->setPixmap(green);
     }
-    if (this->elapsedSeconds > 20) {
+    if (this->elapsedSeconds > 3) {
         this->seats[this->train - 1].setReadyStatus(true, 3);
         ui->frontStatus->setPixmap(green);
     }
-    if (this->elapsedSeconds > 40) {
+    if (this->elapsedSeconds > 4) {
         ui->overTimeLabel->setPlainText("(OVER)");
     }
     if (this->seats[train - 1].getReadyStatus() == 3) {
@@ -167,6 +168,8 @@ void MainWindow::incrementTrain() {
             this->seats[findIndex(this->train)].setReadyStatus(false, 1);
             this->seats[findIndex(this->train)].setReadyStatus(false, 2);
             this->seats[findIndex(this->train)].setReadyStatus(false, 3);
+
+            //visual change
             ui->trainNumber->setPlainText(QString::number(this->train));
             return;
         }
@@ -203,5 +206,47 @@ void MainWindow::on_rmvTrainButton_clicked() {
     ui->midStatus->setPixmap(red);
     ui->frontStatus->setPixmap(red);
     ui->trainNumber->setPlainText(QString::number(this->train));
+}
+
+void MainWindow::on_resetButton_clicked() {
+    //reset time data
+    this->times.clear();
+    this->averageTime = 0;
+    this->resetTimer();
+
+    //reset number of dispatch data
+    this->dispatches = 0;
+
+    //reset seats vector
+    seats.clear();
+    RideSeat seat1(1);
+    RideSeat seat2(2);
+    RideSeat seat3(3);
+    RideSeat seat4(4);
+    seats.push_back(seat1); seats.push_back(seat2); seats.push_back(seat3); seats.push_back(seat4);
+
+    for(RideSeat seat: seats) {
+        std::cout << seat.getTrainNumber() << " ";
+    }
+    std::cout << std::endl;
+
+    //reset trainNumbers vector
+    std::vector<int> trainNumbers;
+    for (size_t i = 0; i < seats.size(); i++) {
+        trainNumbers.push_back(seats[i].getTrainNumber());
+    }
+    this->train = 1;
+
+    for(int trainNumber: trainNumbers) {
+        std::cout << trainNumber << " ";
+    }
+    std::cout << std::endl;
+
+    //visual changes
+    ui->trainNumber->setPlainText(QString::number(this->train));
+    ui->seatImage->setPixmap(unReadySeat);
+    ui->backStatus->setPixmap(red);
+    ui->midStatus->setPixmap(red);
+    ui->frontStatus->setPixmap(red);
 }
 

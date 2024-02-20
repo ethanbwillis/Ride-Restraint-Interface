@@ -117,6 +117,7 @@ compiler_moc_header_make_all: release/moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) release\moc_mainwindow.cpp
 release/moc_mainwindow.cpp: ../RideRestraintInterface/mainwindow.h \
+		../RideRestraintInterface/RideSeat.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -281,6 +282,24 @@ release/moc_mainwindow.cpp: ../RideRestraintInterface/mainwindow.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QTransform \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QCoreApplication \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qtsan_impl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QDebug \
 		release/moc_predefs.h \
 		C:/Qt/6.6.0/mingw_64/bin/moc.exe
 	C:\Qt\6.6.0\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/ebwil/OneDrive/Documents/TPED-23-24/RideRestraintSoftware/build-RideRestraintInterface-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -IC:/Users/ebwil/OneDrive/Documents/TPED-23-24/RideRestraintSoftware/RideRestraintInterface -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\RideRestraintInterface\mainwindow.h -o release\moc_mainwindow.cpp
@@ -308,13 +327,14 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-release/RideSeat.o: ../RideRestraintInterface/RideSeat.cpp 
+release/RideSeat.o: ../RideRestraintInterface/RideSeat.cpp ../RideRestraintInterface/RideSeat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\RideSeat.o ..\RideRestraintInterface\RideSeat.cpp
 
 release/Station.o: ../RideRestraintInterface/Station.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Station.o ..\RideRestraintInterface\Station.cpp
 
 release/main.o: ../RideRestraintInterface/main.cpp ../RideRestraintInterface/mainwindow.h \
+		../RideRestraintInterface/RideSeat.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -479,8 +499,7 @@ release/main.o: ../RideRestraintInterface/main.cpp ../RideRestraintInterface/mai
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QTransform \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qtabwidget.h \
-		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QCoreApplication \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
@@ -497,6 +516,9 @@ release/main.o: ../RideRestraintInterface/main.cpp ../RideRestraintInterface/mai
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qrunnable.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qexception.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qguiapplication.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qinputmethod.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qlocale.h \
@@ -504,6 +526,7 @@ release/main.o: ../RideRestraintInterface/main.cpp ../RideRestraintInterface/mai
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\RideRestraintInterface\main.cpp
 
 release/mainwindow.o: ../RideRestraintInterface/mainwindow.cpp ../RideRestraintInterface/mainwindow.h \
+		../RideRestraintInterface/RideSeat.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -668,10 +691,7 @@ release/mainwindow.o: ../RideRestraintInterface/mainwindow.cpp ../RideRestraintI
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QTransform \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qtabwidget.h \
-		ui_mainwindow.h \
-		C:/Qt/6.6.0/mingw_64/include/QtCore/QVariant \
-		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QCoreApplication \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
@@ -688,6 +708,11 @@ release/mainwindow.o: ../RideRestraintInterface/mainwindow.cpp ../RideRestraintI
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qrunnable.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qexception.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QDebug \
+		ui_mainwindow.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qguiapplication.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qinputmethod.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qlocale.h \
@@ -725,9 +750,7 @@ release/mainwindow.o: ../RideRestraintInterface/mainwindow.cpp ../RideRestraintI
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qbasictimer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/QDateTime \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qdatetime.h \
-		C:/Qt/6.6.0/mingw_64/include/QtCore/qcalendar.h \
-		../RideRestraintInterface/RideSeat.h \
-		../RideRestraintInterface/Station.h
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qcalendar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\RideRestraintInterface\mainwindow.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 

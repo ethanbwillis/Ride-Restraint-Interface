@@ -44,7 +44,7 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "updateSeconds",
     "resetTimer",
     "incrementTrain",
-    "on_pushButton_2_clicked"
+    "on_rmvTrainButton_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
@@ -55,7 +55,7 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata3[14];
     char stringdata4[11];
     char stringdata5[15];
-    char stringdata6[24];
+    char stringdata6[26];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -67,7 +67,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(34, 13),  // "updateSeconds"
         QT_MOC_LITERAL(48, 10),  // "resetTimer"
         QT_MOC_LITERAL(59, 14),  // "incrementTrain"
-        QT_MOC_LITERAL(74, 23)   // "on_pushButton_2_clicked"
+        QT_MOC_LITERAL(74, 25)   // "on_rmvTrainButton_clicked"
     },
     "MainWindow",
     "on_pushButton_clicked",
@@ -75,7 +75,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "updateSeconds",
     "resetTimer",
     "incrementTrain",
-    "on_pushButton_2_clicked"
+    "on_rmvTrainButton_clicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -128,7 +128,7 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'incrementTrain'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_2_clicked'
+        // method 'on_rmvTrainButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -144,7 +144,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->updateSeconds(); break;
         case 2: _t->resetTimer(); break;
         case 3: _t->incrementTrain(); break;
-        case 4: _t->on_pushButton_2_clicked(); break;
+        case 4: _t->on_rmvTrainButton_clicked(); break;
         default: ;
         }
     }

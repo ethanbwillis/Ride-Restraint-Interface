@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 #include "RideSeat.h"
 #include <algorithm>
-
+#include <stdlib.h>
 #include <QMainWindow>
+#include <QCoreApplication>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +39,9 @@ private:
     int averageTime;
     std::vector<int> times;
     int findIndex(int x);
+    bool nextBlockReady;
+    bool gateReady;
+    bool isDispatched;
 public:
     //pixmap/image objects to be updated on init
     QPixmap unReadySeat;
@@ -45,6 +50,10 @@ public:
     QPixmap green;
     QPixmap readySeat;
     QPixmap ipSeat;
+    QPixmap ipSeatTwo;
     QPixmap rideRestraintLogo;
+    QPixmap readyGate;
+    QPixmap ipGate;
+    QPixmap unReadyGate;
 };
 #endif // MAINWINDOW_H

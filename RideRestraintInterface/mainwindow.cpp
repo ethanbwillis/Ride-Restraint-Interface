@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this->timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
     this->timer->setInterval(1000);
     this->timer->start();
+    this->nextBlockReady = false;
 
     ui->trainNumber->setPlainText(QString::number(this->train));
 
@@ -33,12 +34,22 @@ MainWindow::MainWindow(QWidget *parent)
     green.load("../Green.png");
     readySeat.load("../GreenRideSeat.png");
     ipSeat.load("../InProgressRideSeat.png");
+    ipSeatTwo.load("../InProgressRideSeat2.png");
     rideRestraintLogo.load("../RideRestraintLogo.png");
+    unReadyGate.load("../ClosedGate.png");
+    ipGate.load("../InProgressGate.png");
+    readyGate.load("../OpenGate.png");
 
     //setting images. setscaledcontents to crop automatically
     ui->seatImage->setPixmap(unReadySeat);
     ui->seatImage->setScaledContents(true);
     ui->seatImage->setStyleSheet("background-color: #3f48cc;");
+    isDispatched = false;
+
+    ui->gateImage->setPixmap(unReadyGate);
+    ui->gateImage->setScaledContents(true);
+    ui->gateImage->setStyleSheet("background-color: #3f48cc;");
+    gateReady = false;
 
     ui->info->setPixmap(logo);
     ui->info->setScaledContents(true);
@@ -58,6 +69,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->frontMarker->setStyleSheet("color: white; background-color: transparent;");
 
     ui->overTimeLabel->setStyleSheet("color: white; background-color: transparent;");
+
+    ui->nextBlockStatus->setStyleSheet("color: white; background-color: transparent;");
+    ui->nextBlockReady->setStyleSheet("color: white; background-color: transparent;");
+    ui->nextBlockReady->setPlainText("NOT READY");
+
+    ui->gateStatus->setStyleSheet("color: white; background-color: transparent;");
 
     ui->backInfo->setPixmap(logo);
     ui->backInfo->setScaledContents(true);
@@ -91,7 +108,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    if (this->seats[this->train - 1].getReadyStatus() == 3) {
+    if (this->seats[this->train - 1].getReadyStatus() == 3 && this->nextBlockReady && this->gateReady) {
         //dispatch simulation. when clicked, reset current timer and change train number.
         this->seats[this->train - 1].setTime(this->elapsedSeconds);
         this->times.push_back(this->elapsedSeconds);
@@ -109,6 +126,15 @@ void MainWindow::on_pushButton_clicked()
         ui->backStatus->setPixmap(red);
         ui->midStatus->setPixmap(red);
         ui->frontStatus->setPixmap(red);
+        ui->nextBlockReady->setPlainText("NOT READY");
+        this->nextBlockReady = false;
+        ui->nextBlockReady->setStyleSheet("color: white; background-color: transparent;");
+        ui->gateImage->setPixmap(unReadyGate);
+        this->gateReady = false;
+
+        isDispatched = true;
+        //send it using serial port class
+        isDispatched = false;
     }
 
 }
@@ -125,10 +151,23 @@ void MainWindow::updateSeconds() {
     if (this->elapsedSeconds > 15) {
         this->seats[this->train - 1].setReadyStatus(true, 2);
         ui->midStatus->setPixmap(green);
+        ui->seatImage->setPixmap(ipSeatTwo);
     }
     if (this->elapsedSeconds > 20) {
         this->seats[this->train - 1].setReadyStatus(true, 3);
         ui->frontStatus->setPixmap(green);
+    }
+    if (this->elapsedSeconds > 25) {
+        ui->nextBlockReady->setPlainText("READY");
+        ui->nextBlockReady->setStyleSheet("color: green; background-color: transparent;");
+        this->nextBlockReady = true;
+    }
+    if (this->elapsedSeconds > 26) {
+        ui->gateImage->setPixmap(ipGate);
+    }
+    if (this->elapsedSeconds > 30) {
+        ui->gateImage->setPixmap(readyGate);
+        this->gateReady = true;
     }
     if (this->elapsedSeconds > 40) {
         ui->overTimeLabel->setPlainText("(OVER)");

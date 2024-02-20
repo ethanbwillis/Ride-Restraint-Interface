@@ -555,6 +555,13 @@
       <y>290</y>
       <width>191</width>
       <height>31</height>
+   <widget class="QPushButton" name="resetButton">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>353</y>
+      <width>131</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -593,6 +600,14 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+      <pointsize>6</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Reset Everything</string>
     </property>
    </widget>
   </widget>
@@ -602,7 +617,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

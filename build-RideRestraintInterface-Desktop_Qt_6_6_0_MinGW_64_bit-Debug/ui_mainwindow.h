@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPlainTextEdit>
@@ -44,10 +43,13 @@ public:
     QLabel *frontStatus;
     QPlainTextEdit *overTimeLabel;
     QLabel *logo;
-    QLineEdit *lineEdit;
-    QPushButton *pushButton_2;
+    QPushButton *rmvTrainButton;
     QPlainTextEdit *timeMarker_2;
     QPlainTextEdit *averageTime;
+    QPlainTextEdit *nextBlockStatus;
+    QPlainTextEdit *nextBlockReady;
+    QPlainTextEdit *gateStatus;
+    QLabel *gateImage;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -161,16 +163,13 @@ public:
         logo = new QLabel(centralwidget);
         logo->setObjectName("logo");
         logo->setGeometry(QRect(570, 0, 231, 201));
-        lineEdit = new QLineEdit(centralwidget);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(590, 290, 113, 24));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(710, 290, 80, 24));
+        rmvTrainButton = new QPushButton(centralwidget);
+        rmvTrainButton->setObjectName("rmvTrainButton");
+        rmvTrainButton->setGeometry(QRect(610, 290, 80, 24));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("OCR A Extended")});
         font2.setPointSize(6);
-        pushButton_2->setFont(font2);
+        rmvTrainButton->setFont(font2);
         timeMarker_2 = new QPlainTextEdit(centralwidget);
         timeMarker_2->setObjectName("timeMarker_2");
         timeMarker_2->setGeometry(QRect(60, 80, 141, 31));
@@ -187,6 +186,35 @@ public:
         averageTime->setFrameShadow(QFrame::Plain);
         averageTime->setLineWidth(0);
         averageTime->setReadOnly(true);
+        nextBlockStatus = new QPlainTextEdit(centralwidget);
+        nextBlockStatus->setObjectName("nextBlockStatus");
+        nextBlockStatus->setGeometry(QRect(30, 210, 191, 31));
+        nextBlockStatus->setFont(font1);
+        nextBlockStatus->setLayoutDirection(Qt::LeftToRight);
+        nextBlockStatus->setFrameShape(QFrame::NoFrame);
+        nextBlockStatus->setFrameShadow(QFrame::Plain);
+        nextBlockStatus->setLineWidth(0);
+        nextBlockStatus->setReadOnly(true);
+        nextBlockReady = new QPlainTextEdit(centralwidget);
+        nextBlockReady->setObjectName("nextBlockReady");
+        nextBlockReady->setGeometry(QRect(50, 250, 161, 31));
+        nextBlockReady->setFont(font1);
+        nextBlockReady->setFrameShape(QFrame::NoFrame);
+        nextBlockReady->setFrameShadow(QFrame::Plain);
+        nextBlockReady->setLineWidth(0);
+        nextBlockReady->setReadOnly(true);
+        gateStatus = new QPlainTextEdit(centralwidget);
+        gateStatus->setObjectName("gateStatus");
+        gateStatus->setGeometry(QRect(40, 290, 191, 31));
+        gateStatus->setFont(font1);
+        gateStatus->setLayoutDirection(Qt::LeftToRight);
+        gateStatus->setFrameShape(QFrame::NoFrame);
+        gateStatus->setFrameShadow(QFrame::Plain);
+        gateStatus->setLineWidth(0);
+        gateStatus->setReadOnly(true);
+        gateImage = new QLabel(centralwidget);
+        gateImage->setObjectName("gateImage");
+        gateImage->setGeometry(QRect(30, 310, 111, 81));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -222,9 +250,13 @@ public:
         frontStatus->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         overTimeLabel->setPlainText(QString());
         logo->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Change Train No.", nullptr));
+        rmvTrainButton->setText(QCoreApplication::translate("MainWindow", "Remove Train", nullptr));
         timeMarker_2->setPlainText(QCoreApplication::translate("MainWindow", "Avg Time:", nullptr));
         averageTime->setPlainText(QString());
+        nextBlockStatus->setPlainText(QCoreApplication::translate("MainWindow", "Next Block Section", nullptr));
+        nextBlockReady->setPlainText(QString());
+        gateStatus->setPlainText(QCoreApplication::translate("MainWindow", "Gate Status", nullptr));
+        gateImage->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

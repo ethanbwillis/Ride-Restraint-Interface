@@ -47,6 +47,10 @@ public:
     QPlainTextEdit *timeMarker_2;
     QPlainTextEdit *averageTime;
     QPushButton *resetButton;
+    QPushButton *addTrainButton;
+    QPlainTextEdit *totalTrainsMarker;
+    QPlainTextEdit *overTimeLabel_2;
+    QPlainTextEdit *totalTrains;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -73,7 +77,7 @@ public:
         info->setGeometry(QRect(0, 0, 231, 201));
         timeMarker = new QPlainTextEdit(centralwidget);
         timeMarker->setObjectName("timeMarker");
-        timeMarker->setGeometry(QRect(60, 30, 141, 31));
+        timeMarker->setGeometry(QRect(60, 50, 101, 31));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("OCR A Extended")});
         font1.setBold(true);
@@ -84,7 +88,7 @@ public:
         timeMarker->setReadOnly(true);
         elapsedTime = new QPlainTextEdit(centralwidget);
         elapsedTime->setObjectName("elapsedTime");
-        elapsedTime->setGeometry(QRect(60, 60, 111, 31));
+        elapsedTime->setGeometry(QRect(160, 50, 81, 31));
         elapsedTime->setFont(font1);
         elapsedTime->setFrameShape(QFrame::NoFrame);
         elapsedTime->setFrameShadow(QFrame::Plain);
@@ -93,7 +97,7 @@ public:
         elapsedTime->setCenterOnScroll(true);
         trainMarker = new QPlainTextEdit(centralwidget);
         trainMarker->setObjectName("trainMarker");
-        trainMarker->setGeometry(QRect(60, 110, 131, 31));
+        trainMarker->setGeometry(QRect(60, 110, 111, 31));
         trainMarker->setFont(font1);
         trainMarker->setFrameShape(QFrame::NoFrame);
         trainMarker->setFrameShadow(QFrame::Plain);
@@ -101,7 +105,7 @@ public:
         trainMarker->setReadOnly(true);
         trainNumber = new QPlainTextEdit(centralwidget);
         trainNumber->setObjectName("trainNumber");
-        trainNumber->setGeometry(QRect(60, 140, 141, 31));
+        trainNumber->setGeometry(QRect(170, 110, 101, 31));
         trainNumber->setFont(font1);
         trainNumber->setFrameShape(QFrame::NoFrame);
         trainNumber->setFrameShadow(QFrame::Plain);
@@ -162,14 +166,14 @@ public:
         logo->setGeometry(QRect(570, 0, 231, 201));
         rmvTrainButton = new QPushButton(centralwidget);
         rmvTrainButton->setObjectName("rmvTrainButton");
-        rmvTrainButton->setGeometry(QRect(610, 290, 80, 24));
+        rmvTrainButton->setGeometry(QRect(610, 310, 80, 24));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("OCR A Extended")});
         font2.setPointSize(6);
         rmvTrainButton->setFont(font2);
         timeMarker_2 = new QPlainTextEdit(centralwidget);
         timeMarker_2->setObjectName("timeMarker_2");
-        timeMarker_2->setGeometry(QRect(60, 80, 141, 31));
+        timeMarker_2->setGeometry(QRect(60, 80, 111, 31));
         timeMarker_2->setFont(font1);
         timeMarker_2->setFrameShape(QFrame::NoFrame);
         timeMarker_2->setFrameShadow(QFrame::Plain);
@@ -188,6 +192,34 @@ public:
         resetButton->setGeometry(QRect(40, 353, 131, 21));
         resetButton->setFont(font2);
         resetButton->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        addTrainButton = new QPushButton(centralwidget);
+        addTrainButton->setObjectName("addTrainButton");
+        addTrainButton->setGeometry(QRect(610, 290, 80, 24));
+        addTrainButton->setFont(font2);
+        totalTrainsMarker = new QPlainTextEdit(centralwidget);
+        totalTrainsMarker->setObjectName("totalTrainsMarker");
+        totalTrainsMarker->setGeometry(QRect(60, 140, 101, 31));
+        totalTrainsMarker->setFont(font1);
+        totalTrainsMarker->setFrameShape(QFrame::NoFrame);
+        totalTrainsMarker->setFrameShadow(QFrame::Plain);
+        totalTrainsMarker->setLineWidth(0);
+        totalTrainsMarker->setReadOnly(true);
+        overTimeLabel_2 = new QPlainTextEdit(centralwidget);
+        overTimeLabel_2->setObjectName("overTimeLabel_2");
+        overTimeLabel_2->setGeometry(QRect(470, 360, 61, 31));
+        overTimeLabel_2->setFont(font1);
+        overTimeLabel_2->setFrameShape(QFrame::NoFrame);
+        overTimeLabel_2->setFrameShadow(QFrame::Plain);
+        overTimeLabel_2->setLineWidth(0);
+        overTimeLabel_2->setReadOnly(true);
+        totalTrains = new QPlainTextEdit(centralwidget);
+        totalTrains->setObjectName("totalTrains");
+        totalTrains->setGeometry(QRect(160, 140, 81, 31));
+        totalTrains->setFont(font1);
+        totalTrains->setFrameShape(QFrame::NoFrame);
+        totalTrains->setFrameShadow(QFrame::Plain);
+        totalTrains->setLineWidth(0);
+        totalTrains->setReadOnly(true);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -227,6 +259,10 @@ public:
         timeMarker_2->setPlainText(QCoreApplication::translate("MainWindow", "Avg Time:", nullptr));
         averageTime->setPlainText(QString());
         resetButton->setText(QCoreApplication::translate("MainWindow", "Reset Everything", nullptr));
+        addTrainButton->setText(QCoreApplication::translate("MainWindow", "Add Train", nullptr));
+        totalTrainsMarker->setPlainText(QCoreApplication::translate("MainWindow", "Total Trains:", nullptr));
+        overTimeLabel_2->setPlainText(QString());
+        totalTrains->setPlainText(QString());
     } // retranslateUi
 
 };

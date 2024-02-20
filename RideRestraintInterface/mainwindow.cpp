@@ -54,6 +54,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->trainMarker->setStyleSheet("color: white; background-color: transparent;");
     ui->trainNumber->setStyleSheet("color: white; background-color: transparent;");
 
+    ui->totalTrainsMarker->setStyleSheet("color: white; background-color: transparent;");
+    ui->totalTrains->setStyleSheet("color: white; background-color: transparent;");
+    ui->totalTrains->setPlainText(QString::number(seats.size()));
+
     ui->backMarker->setStyleSheet("color: white; background-color: transparent;");
     ui->midMarker->setStyleSheet("color: white; background-color: transparent;");
     ui->frontMarker->setStyleSheet("color: white; background-color: transparent;");
@@ -81,6 +85,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->timeMarker_2->setStyleSheet("color: white; background-color: transparent");
 
     ui->rmvTrainButton->setStyleSheet("color: white");
+    ui->addTrainButton->setStyleSheet("color: white");
+
+
 }
 
 MainWindow::~MainWindow()
@@ -102,6 +109,7 @@ void MainWindow::on_pushButton_clicked()
         }
         this->dispatches++;
         this->averageTime = sum / dispatches;
+
         //display it
         ui->averageTime->setPlainText(QString::number(averageTime));
         this->incrementTrain();
@@ -147,7 +155,6 @@ void MainWindow::resetTimer() {
 }
 
 void MainWindow::incrementTrain() {
-    std::vector<int> trainNumbers;
     for (size_t i = 0; i < seats.size(); i++) {
         trainNumbers.push_back(seats[i].getTrainNumber());
     }
@@ -194,18 +201,44 @@ int MainWindow::findIndex(int x) {
 }
 
 void MainWindow::on_rmvTrainButton_clicked() {
-    if (this->seats.size() == 1) {
+    //make sure all of the seats aren't deleted
+    if (trainNumbers.size() <= 1) {
         return;
     }
+
+    //removing the seat from the vector
     int previousSeat = this->train;
     this->incrementTrain();
-    this->seats.erase(this->seats.begin() + findIndex(previousSeat));
+    trainNumbers.erase(trainNumbers.begin() + findIndex(previousSeat));
+    this->resetTimer();
+
+    //visual changes
+    ui->seatImage->setPixmap(unReadySeat);
+    ui->backStatus->setPixmap(red);
+    ui->midStatus->setPixmap(red);
+    ui->frontStatus->setPixmap(red);
+    ui->trainNumber->setPlainText(QString::number(this->train));
+    ui->totalTrains->setPlainText(QString::number(trainNumbers.size()));
+}
+
+void MainWindow::on_addTrainButton_clicked() {
+    //make sure we don't add too many seats
+    if (this->seats.size() > 4) {
+        return;
+    }
+
+    //add a new seat onto the end of the vector
+    RideSeat newSeat(seats.size());
+    this->seats.push_back(newSeat);
+
+    //visual changes
     this->resetTimer();
     ui->seatImage->setPixmap(unReadySeat);
     ui->backStatus->setPixmap(red);
     ui->midStatus->setPixmap(red);
     ui->frontStatus->setPixmap(red);
     ui->trainNumber->setPlainText(QString::number(this->train));
+    ui->totalTrains->setPlainText(QString::number(seats.size()));
 }
 
 void MainWindow::on_resetButton_clicked() {
@@ -231,7 +264,7 @@ void MainWindow::on_resetButton_clicked() {
     std::cout << std::endl;
 
     //reset trainNumbers vector
-    std::vector<int> trainNumbers;
+    trainNumbers.clear();
     for (size_t i = 0; i < seats.size(); i++) {
         trainNumbers.push_back(seats[i].getTrainNumber());
     }

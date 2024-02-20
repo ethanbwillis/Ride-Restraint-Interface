@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 #include "RideSeat.h"
 #include <algorithm>
-
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -22,12 +21,12 @@ private slots:
     void updateSeconds();
     void resetTimer();
     void incrementTrain();
-
     void on_rmvTrainButton_clicked();
-
     void on_resetButton_clicked();
+    void on_addTrainButton_clicked();
 
 private:
+    std::vector<int> trainNumbers;
     Ui::MainWindow *ui;
     bool ready = false;
     //member variables to keep track of timer and seconds. elapsedSeconds and train subject to change when backend added

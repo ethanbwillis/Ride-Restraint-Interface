@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <stdlib.h>
 #include <QMainWindow>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 #include <QCoreApplication>
 #include <QDebug>
 
@@ -42,6 +44,13 @@ private:
     bool nextBlockReady;
     bool gateReady;
     bool isDispatched;
+
+    //arduino connection stuff - https://www.youtube.com/watch?v=IqEO95Gfp6k
+    QSerialPort *arduino;
+    static const quint16 arduino_uno_vendorID = 0;
+    static const quint16 arduino_uno_productID = 0;
+    QString arduino_port_name;
+    bool arduino_is_available;
 public:
     //pixmap/image objects to be updated on init
     QPixmap unReadySeat;

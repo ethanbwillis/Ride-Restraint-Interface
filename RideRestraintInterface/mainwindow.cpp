@@ -9,6 +9,29 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 
 {
+    //figure out vendor and product ids of connected board
+    qDebug() << "Number of Ports: " << QSerialPortInfo::availablePorts().length();
+    foreach (const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()) {
+        if (serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()) {
+            qDebug() << "Vendor ID: " << serialPortInfo.vendorIdentifier();
+            this->arduino_port_name = serialPortInfo.portName();
+            qDebug() << "Product ID: " << serialPortInfo.productIdentifier();
+            this->arduino_is_available = true;
+        }
+    }
+
+    //setup port
+    if (this->arduino_is_available) {
+        arduino->setPortName(this->arduino_port_name);
+        arduino->open(QSerialPort::ReadWrite);
+        arduino->setBaudRate(QSerialPort::Baud9600);
+        arduino->setDataBits(QSerialPort::Data8);
+        arduino->setParity(QSerialPort::NoParity);
+        arduino->setStopBits(QSerialPort::OneStop);
+        arduino->setFlowControl(QSerialPort::NoFlowControl);
+    }
+
+
     RideSeat seat1(1);
     RideSeat seat2(2);
     RideSeat seat3(3);
@@ -102,12 +125,14 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    if (arduino->isOpen()) {
+        arduino->close();
+    }
 }
 
 
 
-void MainWindow::on_pushButton_clicked()
-{
+void MainWindow::on_pushButton_clicked() {
     if (this->seats[this->train - 1].getReadyStatus() == 3 && this->nextBlockReady && this->gateReady) {
         //dispatch simulation. when clicked, reset current timer and change train number.
         this->seats[this->train - 1].setTime(this->elapsedSeconds);
@@ -134,6 +159,7 @@ void MainWindow::on_pushButton_clicked()
 
         isDispatched = true;
         //send it using serial port class
+        //send time
         isDispatched = false;
     }
 

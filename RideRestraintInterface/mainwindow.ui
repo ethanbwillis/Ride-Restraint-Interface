@@ -595,6 +595,19 @@
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="lightButton">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>20</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TURN LIGHT ON</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

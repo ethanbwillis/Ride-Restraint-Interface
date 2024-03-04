@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
         if (serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()) {
             qDebug() << "Vendor ID: " << serialPortInfo.vendorIdentifier();
             this->arduino_port_name = serialPortInfo.portName();
+            arduino.setPortName(this->arduino_port_name);
             qDebug() << "Product ID: " << serialPortInfo.productIdentifier();
             this->arduino_is_available = true;
         }
@@ -22,15 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     //setup port
     if (this->arduino_is_available) {
-        arduino->setPortName(this->arduino_port_name);
-        arduino->open(QSerialPort::ReadWrite);
-        arduino->setBaudRate(QSerialPort::Baud9600);
-        arduino->setDataBits(QSerialPort::Data8);
-        arduino->setParity(QSerialPort::NoParity);
-        arduino->setStopBits(QSerialPort::OneStop);
-        arduino->setFlowControl(QSerialPort::NoFlowControl);
-    }
 
+        arduino.open(QSerialPort::WriteOnly);
+        arduino.setBaudRate(QSerialPort::Baud9600);
+    }
 
     RideSeat seat1(1);
     RideSeat seat2(2);
@@ -125,8 +121,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    if (arduino->isOpen()) {
-        arduino->close();
+    if (arduino.isOpen()) {
+        arduino.close();
     }
 }
 
@@ -268,5 +264,27 @@ void MainWindow::on_rmvTrainButton_clicked() {
     ui->midStatus->setPixmap(red);
     ui->frontStatus->setPixmap(red);
     ui->trainNumber->setPlainText(QString::number(this->train));
+}
+
+
+void MainWindow::on_lightButton_clicked()
+{
+    int valueToSend;
+    if (this->lightOn) {
+        valueToSend = 1;
+        this->lightOn = false;
+    } else {
+        valueToSend = 0;
+        this->lightOn = true;
+    }
+     // Your integer value
+    QByteArray data = QByteArray::number(valueToSend);
+    qint64 bytesWritten = arduino.write(data);
+    if(bytesWritten == -1) {
+        qDebug() << "Failed to write to serial port:" << arduino.errorString();
+    } else {
+        qDebug() << "Integer sent successfully!";
+    }
+
 }
 

@@ -29,6 +29,8 @@ private slots:
 
     void on_rmvTrainButton_clicked();
 
+    void on_lightButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     bool ready = false;
@@ -46,7 +48,8 @@ private:
     bool isDispatched;
 
     //arduino connection stuff - https://www.youtube.com/watch?v=IqEO95Gfp6k
-    QSerialPort *arduino;
+    bool lightOn = false;
+    QSerialPort arduino;
     static const quint16 arduino_uno_vendorID = 0;
     static const quint16 arduino_uno_productID = 0;
     QString arduino_port_name;

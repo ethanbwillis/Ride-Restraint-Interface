@@ -31,6 +31,8 @@ private slots:
 
     void on_lightButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     bool ready = false;

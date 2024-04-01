@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     //setup port
     if (this->arduino_is_available) {
 
-        arduino.open(QSerialPort::WriteOnly);
+        arduino.open(QSerialPort::ReadWrite);
         arduino.setBaudRate(QSerialPort::Baud9600);
     }
 
@@ -286,5 +286,23 @@ void MainWindow::on_lightButton_clicked()
         qDebug() << "Integer sent successfully!";
     }
 
+    QByteArray readBuffer;
+    if(arduino.waitForReadyRead(100)) { // Wait for data to be available for 100 ms
+        readBuffer.append(arduino.readAll()); // Append available data to buffer
+        // Check if a complete message is available
+            qDebug() << "Received message:" << readBuffer;
+    }
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QByteArray data = QByteArray::number(90);
+    qint64 bytesWritten = arduino.write(data);
+    if(bytesWritten == -1) {
+        qDebug() << "Failed to write to serial port:" << arduino.errorString();
+    } else {
+        qDebug() << "Integer sent successfully!";
+    }
 }
 

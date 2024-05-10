@@ -1,6 +1,6 @@
 ## Ride Restraint Software Interface
 
-An intuitive GUI made using Qt creator to simulate a user-friendly control interface for ride operators. This program integrates with electrical controls and a mechanical component to make a comprehensive roller coaster restraint model.
+An intuitive GUI made using Qt creator to simulate a control interface for ride operators. This program integrates with electrical controls and a mechanical component to make a comprehensive roller coaster restraint model.
 
 https://github.com/ethanbwillis/Ride-Restraint-Interface/assets/147621579/aa865b10-7662-4457-aaea-9c9b436ea8e6
 

@@ -1,4 +1,4 @@
-## Ride Restraint Software Design
+## Ride Restraint Software Interface
 
 An intuitive GUI made using Qt creator to simulate a user-friendly control interface for ride operators. This program integrates with electrical controls and a mechanical component to make a comprehensive roller coaster restraint model.
 
